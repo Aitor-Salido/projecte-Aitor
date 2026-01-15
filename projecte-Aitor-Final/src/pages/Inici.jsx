@@ -1,3 +1,3 @@
-export default function Home() {
+export default function Inici() {
   return <h1>Home 🚀</h1>
 }
