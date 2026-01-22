@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState } from "react";
-import Inici from './pages/Inici'
-import Forum from './pages/Forum'
-import Ranking from './pages/Ranking'
-import Garatje from './pages/Garatje'
-import Perfil from './pages/Perfil'
+import Inici from './components/Inici'
+import Forum from './components/Forum'
+import Ranking from './components/Ranking'
+import Garatje from './components/Garatje'
+import Perfil from './components/Perfil'
 import IniciarSessio from './components/Iniciar_Sessio/IniciarSessio'
-import Registrat from './pages/Registrat'
+import Registrat from './components/Registrat/Registrat'
 import Navbar from './components/Nav_Bar/Navbar'
 import Footer from './components/Footer/Footer'
 
