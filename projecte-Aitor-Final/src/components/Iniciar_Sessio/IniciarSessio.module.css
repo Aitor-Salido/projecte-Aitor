@@ -1,0 +1,95 @@
+.contenidorPrincipal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.formulari_IS_Conetnidor {
+  width: 550px; 
+  height: auto;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.162);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.formulari_IS {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/*                                                   He buscat un css en una web que hem feia aquest efecte                                                       */
+.conetnidorAux {
+  position: relative;
+  width: 100%;
+}
+
+.conetnidorAux input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-bottom 0.2s ease;
+  background: transparent;
+  margin-bottom: 30px;
+}
+
+.conetnidorAux label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+
+.conetnidorAux input:focus + label,
+.conetnidorAux input:not(:placeholder-shown) + label {
+  transform: translateY(-24px);
+  font-size: 14px;
+  color: #037ffe;
+  font-weight: 500;
+}
+
+.conetnidorAux::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #037ffe;
+  transition: width 0.2s ease;
+}
+
+.conetnidorAux input:focus ~ ::after {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+button {
+  padding: 12px;
+  background-color: #037ffe;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #005fcc;
+}

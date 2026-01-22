@@ -1,0 +1,37 @@
+.imatgeLogo{
+  height: 40px;
+  padding: 20px;
+}
+.navbar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  width: 100%;
+  gap: 15px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.078);
+  
+}
+
+.link {
+  color: #037ffe;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 20px;
+}
+
+.link:hover {
+  color: #005fcc;
+}
+
+.contenidorLogo{
+  display: flex;
+  align-items: center;
+}
+
+.contenidorLogo p{
+  font-size: 17px;
+  font-weight:500
+}

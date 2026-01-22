@@ -4,9 +4,10 @@ import Forum from './pages/Forum'
 import Ranking from './pages/Ranking'
 import Garatje from './pages/Garatje'
 import Perfil from './pages/Perfil'
-import IniciarSesio from './pages/IniciarSesio'
+import IniciarSessio from './components/Iniciar_Sessio/IniciarSessio'
 import Registrat from './pages/Registrat'
-import Navbar from './components/Navbar'
+import Navbar from './components/Nav_Bar/Navbar'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -19,12 +20,14 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/garatje" element={<Garatje />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/iniciar_sesio" element={<IniciarSesio />} />
+        <Route path="/iniciar_sessio" element={<IniciarSessio />} />
         <Route path="/registrat" element={<Registrat />} />
 
         {/* 404 */}
         <Route path="*" element={<h1>404 - Página no encontrada 💀</h1>} />
       </Routes>
+
+      <Footer />
     </>
   )
 }
