@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import styles from "./Navbar.module.css"
 
-export default function Navbar() {
-  const isLogged = true // luego esto vendrá del estado / auth
+export default function Navbar(props) {
+  const isLogged = props.logged // luego esto vendrá del estado / auth
 
   return (
     <nav className={styles.navbar}>

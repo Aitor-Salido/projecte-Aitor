@@ -14,7 +14,12 @@ function Iniciar_Sessio(props) {
         contra:contra
       }
       console.log(signInData);
-      console.log(httpRequest('http://localhost/login/login.php', 'POST', signInData));
+      httpRequest('http://localhost/login/login.php', 'POST', signInData)
+        .then(function(result) {
+        console.log(result)
+        props.pepe(result.valor);
+        });
+    
     };
 
   return (

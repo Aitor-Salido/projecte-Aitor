@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { useState } from "react";
 import Inici from './pages/Inici'
 import Forum from './pages/Forum'
 import Ranking from './pages/Ranking'
@@ -10,9 +11,10 @@ import Navbar from './components/Nav_Bar/Navbar'
 import Footer from './components/Footer/Footer'
 
 function App() {
+    const [isLogged, setIsLogged] = useState(false);
   return (
     <>
-      <Navbar />
+      <Navbar logged={isLogged}/>
 
       <Routes>
         <Route path="/" element={<Inici />} />
@@ -20,7 +22,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/garatje" element={<Garatje />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/iniciar_sessio" element={<IniciarSessio />} />
+        <Route path="/iniciar_sessio" element={<IniciarSessio pepe={setIsLogged}/>} />
         <Route path="/registrat" element={<Registrat />} />
 
         {/* 404 */}
