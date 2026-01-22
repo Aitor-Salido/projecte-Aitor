@@ -22,7 +22,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/garatje" element={<Garatje />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/iniciar_sessio" element={<IniciarSessio pepe={setIsLogged}/>} />
+        <Route path="/iniciar_sessio" element={<IniciarSessio modLogged={setIsLogged}/>} />
         <Route path="/registrat" element={<Registrat />} />
 
         {/* 404 */}

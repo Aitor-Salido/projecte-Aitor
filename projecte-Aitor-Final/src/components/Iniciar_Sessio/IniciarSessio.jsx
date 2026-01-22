@@ -14,10 +14,10 @@ function Iniciar_Sessio(props) {
         contra:contra
       }
       console.log(signInData);
-      httpRequest('http://localhost/login/login.php', 'POST', signInData)
+      httpRequest('http://localhost/Projecte_Backend/login/login.php', 'POST', signInData)
         .then(function(result) {
         console.log(result)
-        props.pepe(result.valor);
+        props.modLogged(result.valor);
         });
     
     };
@@ -34,7 +34,7 @@ function Iniciar_Sessio(props) {
               placeholder=" "
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Label htmlFor="email">Dirección de correo electrónico</Label>
+            <Label htmlFor="email">Correu electrònic</Label>
           </FormGroup>
 
           <FormGroup className={styles.conetnidorAux}>
