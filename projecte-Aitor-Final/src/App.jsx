@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Inici from './components/Inici'
 import Forum from './components/Forum'
 import Ranking from './components/Ranking'
@@ -12,6 +12,23 @@ import Footer from './components/Footer/Footer'
 
 function App() {
     const [isLogged, setIsLogged] = useState(false);
+
+    const checkLoginStatus = () => {
+      fetch("http://localhost/Projecte_Backend/check.php", {
+        method: "GET",
+        credentials: "include"
+      })
+      .then(res => res.json())
+      .then(data => {
+        setIsLogged(data.logeado);
+      })
+      .catch(err => console.error(err));
+    };
+
+    useEffect(() => {
+      checkLoginStatus();
+    }, []);
+
   return (
     <>
       <Navbar logged={isLogged}/>
@@ -22,10 +39,8 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/garatje" element={<Garatje />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/iniciar_sessio" element={<IniciarSessio modLogged={setIsLogged}/>} />
+        <Route path="/iniciar_sessio" element={<IniciarSessio onLoginSuccess={checkLoginStatus} />} />
         <Route path="/registrat" element={<Registrat />} />
-
-        {/* 404 */}
         <Route path="*" element={<h1>404 - Página no encontrada 💀</h1>} />
       </Routes>
 

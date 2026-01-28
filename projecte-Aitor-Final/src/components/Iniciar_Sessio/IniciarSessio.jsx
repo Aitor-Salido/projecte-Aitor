@@ -1,26 +1,34 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./IniciarSessio.module.css";
-import {Form,Button,Label,Input,FormGroup} from 'reactstrap';
+import {Form, Button, Label, Input, FormGroup} from 'reactstrap';
 import {httpRequest} from '../httpRequestUtils';
 
-function Iniciar_Sessio(props) {
+function Iniciar_Sessio({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [contra, setContra] = useState("");
+  const navigate = useNavigate();
 
-    const enviar = (e) => {
-      e.preventDefault();
-      const signInData={
-        email:email,
-        contra:contra
-      }
-      console.log(signInData);
-      httpRequest('http://localhost/Projecte_Backend/login/login.php', 'POST', signInData)
-        .then(function(result) {
-        console.log(result)
-        props.modLogged(result.valor);
-        });
+  const enviar = async (e) => {
+    e.preventDefault();
+    const signInData = {
+      email: email,
+      contra: contra
+    }
     
-    };
+    try {
+      const data = await httpRequest('http://localhost/Projecte_Backend/login/login.php', 'POST', signInData);
+      
+      if (data.valor === true) {
+        if (onLoginSuccess) onLoginSuccess();
+        navigate('/');
+      } else {
+        alert(data.mensaje);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.contenidorPrincipal}>
