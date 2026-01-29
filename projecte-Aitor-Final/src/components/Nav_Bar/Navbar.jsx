@@ -11,9 +11,9 @@ export default function Navbar(props) {
           <p>BoxSphere</p>
       </div>
       <div>
+              <Link className={styles.link} to="/">Inici</Link>
               {isLogged ? (
               <>
-                <Link className={styles.link} to="/">Inici</Link>
                 <Link className={styles.link} to="/forum">Forum</Link>
                 <Link className={styles.link} to="/ranking">Ranking</Link>
                 <Link className={styles.link} to="/garatje">Garatje</Link>

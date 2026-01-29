@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  margin-top: 60px;
   font-family: system-ui, sans-serif;
   background-color: #f1f3f9;
 }

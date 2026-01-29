@@ -23,7 +23,7 @@ function Iniciar_Sessio({ onLoginSuccess }) {
         if (onLoginSuccess) onLoginSuccess();
         navigate('/');
       } else {
-        alert(data.mensaje);
+        alert(data);
       }
     } catch (error) {
       console.error(error);

@@ -1,15 +1,16 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Credentials: true");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-$conn = new mysqli("localhost:6001", "root", "", "garatge_virtual");
+$conn = @new mysqli("localhost:6001", "root", "", "garatge_virtual");
 $conn->set_charset("utf8mb4");
 
 if ($conn->connect_error) {
@@ -53,21 +54,24 @@ $stmt->bind_param(
     $data['email']
 );
 
-$stmt->execute();
 
+if ($stmt->execute()) {
+    if ($stmt->affected_rows > 0) {
+        echo json_encode([
+            "status" => "success",
+            "mensaje" => "Usuario registrado correctamente."
+        ]);
+    } else {
+        echo json_encode([
+            "status" => "error",
+            "mensaje" => "El correo electrónico ya está registrado."
+        ]);
+    }
+} else {
+    echo json_encode([
+        "status" => "error",
+        "mensaje" => "Error al ejecutar la inserción en la base de datos.",
+        "debug" => $stmt->error
+    ]);
+}
 
-// $result = $stmt->get_result();
-
-// if ($result->num_rows === 0) {
-//     echo json_encode(["mensaje" => "Usuario no encontrado", "valor" => false]);
-// } else {
-//     $fila = $result->fetch_assoc();
-//     $contraEncriptada = $fila['contrasenya'];
-//     $contraDesencriptada = $data['contra'];
-
-//     if (password_verify($contraDesencriptada, $contraEncriptada)) {
-//         echo json_encode(["mensaje" => "Usuario Logeado", "valor" => true]);
-//     } else {
-//         echo json_encode(["mensaje" => "Contrasenya incorrecta", "valor" => false]);
-//     }
-// }

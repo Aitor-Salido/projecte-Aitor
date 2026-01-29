@@ -12,7 +12,9 @@
   gap: 15px;
   background: white;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.078);
-  
+  z-index: 1000;
+  top: 0;
+
 }
 
 .link {

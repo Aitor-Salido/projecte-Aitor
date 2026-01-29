@@ -10,10 +10,8 @@ export async function httpRequest(url, method, body = null) {
     if (body) {
         options.body = JSON.stringify(body);
     }
-
     const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
+    return response.json();
 };
 
 export default httpRequest;

@@ -10,7 +10,7 @@ function Registrar() {
   const [email, setEmail] = useState("");
   const [contra, setContra] = useState("");
 
-    const enviar = (e) => {
+    const enviar = async (e) => {
       e.preventDefault();
       const signInData={
         nom:nom,
@@ -19,12 +19,8 @@ function Registrar() {
         email:email,
         contra:contra
       }
-      console.log(signInData);
       httpRequest('http://localhost/Projecte_Backend/register/register.php', 'POST', signInData)
-        .then(function(result) {
-        console.log(result)
-        props.pepe(result.valor);
-        });
+      .then(res => console.log(res));
     
     };
 
