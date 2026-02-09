@@ -22,8 +22,6 @@ function Iniciar_Sessio({ onLoginSuccess }) {
       if (data.valor === true) {
         if (onLoginSuccess) onLoginSuccess();
         navigate('/');
-      } else {
-        alert(data);
       }
     } catch (error) {
       console.error(error);
@@ -56,7 +54,7 @@ function Iniciar_Sessio({ onLoginSuccess }) {
             <Label htmlFor="contra">Contrasenya</Label>
           </FormGroup>
 
-          <Button type="submit">Iniciar Sessió</Button>
+          <Button type="submit" className={styles.button}>Iniciar Sessió</Button>
         </Form>
       </div>
     </div>

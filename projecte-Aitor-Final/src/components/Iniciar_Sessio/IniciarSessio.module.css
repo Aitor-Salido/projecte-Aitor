@@ -8,14 +8,17 @@
 .formulari_IS_Conetnidor {
   width: 550px; 
   height: auto;
-  background: white;
+      background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.162);
+  box-shadow: 0 4px 12px rgba(149, 149, 149, 0.162);
   display: flex;
   flex-direction: column;
   gap: 30px;
   box-sizing: border-box;
+  
 }
 
 .formulari_IS {
@@ -36,12 +39,13 @@
   padding: 12px 10px;
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  border-bottom: 1px solid var(--text-secondary);
   outline: none;
   box-sizing: border-box;
   transition: border-bottom 0.2s ease;
   background: transparent;
   margin-bottom: 30px;
+  color: var(--text-secondary);
 }
 
 .conetnidorAux label {
@@ -49,7 +53,7 @@
   top: 12px;
   left: 10px;
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-secondary);
   pointer-events: none;
   transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
 }
@@ -58,7 +62,7 @@
 .conetnidorAux input:not(:placeholder-shown) + label {
   transform: translateY(-24px);
   font-size: 14px;
-  color: #037ffe;
+  color:  var(--accent-red);
   font-weight: 500;
 }
 
@@ -69,7 +73,7 @@
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: #037ffe;
+  background-color: var(--accent-red);
   transition: width 0.2s ease;
 }
 
@@ -79,10 +83,10 @@
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-button {
+.button {
   padding: 12px;
-  background-color: #037ffe;
-  color: white;
+  background-color: var(--accent-red);
+  color: var(--text-secondary);
   font-weight: 600;
   border: none;
   border-radius: 9999px;
@@ -90,6 +94,6 @@ button {
   transition: background-color 0.2s ease;
 }
 
-button:hover {
-  background-color: #005fcc;
+.button:hover {
+  background-color: var(--accent-red-hover);
 }

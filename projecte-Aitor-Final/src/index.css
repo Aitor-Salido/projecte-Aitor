@@ -1,6 +1,36 @@
+:root {
+    /* Textos */
+    --text-main: #e5e7eb;      /* blanco suave (principal) */
+    --text-secondary: #b6c0cc; /* gris claro frío */
+    --text-muted: #7b8794;     /* gris apagado */
+
+    /* Acentos modernos */
+    --accent-blue: #4f8cff;    /* azul moderno */
+    --accent-cyan: #38bdf8;    /* cyan suave */
+    --accent-purple: #9d7cff;  /* violeta elegante */
+    --accent-green: #4ade80;   /* verde suave */
+    --accent-red: #f87171;
+    --accent-red-hover: #fe5757;     /* rojo suave */
+}
+
+
 body {
   margin: 0;
   margin-top: 60px;
   font-family: system-ui, sans-serif;
-  background-color: #f1f3f9;
+    background: linear-gradient(
+        135deg,
+        #0f172a,   /* azul oscuro elegante */
+        #111827,   /* gris oscuro */
+        #020617    /* casi negro */
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite;
+    color: #e5e7eb;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
