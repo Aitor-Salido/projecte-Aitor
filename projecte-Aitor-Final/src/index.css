@@ -3,14 +3,14 @@
     --text-main: #e5e7eb;      /* blanco suave (principal) */
     --text-secondary: #b6c0cc; /* gris claro frío */
     --text-muted: #7b8794;     /* gris apagado */
+    --text-dark: #1d265a; 
 
     /* Acentos modernos */
     --accent-blue: #4f8cff;    /* azul moderno */
+    --accent-blue-hover: #38bdf8;
     --accent-cyan: #38bdf8;    /* cyan suave */
     --accent-purple: #9d7cff;  /* violeta elegante */
     --accent-green: #4ade80;   /* verde suave */
-    --accent-red: #f87171;
-    --accent-red-hover: #fe5757;     /* rojo suave */
 }
 
 

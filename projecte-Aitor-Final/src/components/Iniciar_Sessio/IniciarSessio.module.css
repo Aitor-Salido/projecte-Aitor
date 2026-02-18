@@ -62,7 +62,7 @@
 .conetnidorAux input:not(:placeholder-shown) + label {
   transform: translateY(-24px);
   font-size: 14px;
-  color:  var(--accent-red);
+  color:  var(--accent-blue);
   font-weight: 500;
 }
 
@@ -73,7 +73,7 @@
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: var(--accent-red);
+  background-color: var(--accent-blue);
   transition: width 0.2s ease;
 }
 
@@ -85,9 +85,9 @@
 
 .button {
   padding: 12px;
-  background-color: var(--accent-red);
-  color: var(--text-secondary);
-  font-weight: 600;
+  background-color: var(--accent-blue);
+  color: var(--text-dark);
+  font-weight: 900;
   border: none;
   border-radius: 9999px;
   cursor: pointer;
@@ -95,5 +95,5 @@
 }
 
 .button:hover {
-  background-color: var(--accent-red-hover);
+  background-color: var(--accent-blue-hover);
 }

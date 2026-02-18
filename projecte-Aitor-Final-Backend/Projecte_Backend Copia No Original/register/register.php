@@ -74,4 +74,3 @@ if ($stmt->execute()) {
         "debug" => $stmt->error
     ]);
 }
-
