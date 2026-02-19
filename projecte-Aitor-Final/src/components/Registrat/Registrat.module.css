@@ -96,3 +96,11 @@ button {
 button:hover {
   background-color: var(--accent-blue-hover);
 }
+
+.errorText {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-size: 11px;
+  color: #e74c3c;
+}
