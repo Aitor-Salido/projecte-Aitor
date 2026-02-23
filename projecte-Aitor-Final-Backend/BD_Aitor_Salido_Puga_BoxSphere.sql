@@ -1,8 +1,13 @@
+/*Base de dades exportada de mysql*/
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS garatge_virtual;
+CREATE DATABASE garatge_virtual;
+USE garatge_virtual;
 
 CREATE TABLE `consum` (
   `id_consum` int(11) NOT NULL,
@@ -59,62 +64,6 @@ CREATE TABLE `manteniment` (
 INSERT INTO `manteniment` (`id_manteniment`, `id_vehicle`, `data_manteniment`, `tipus`, `descripcio`, `quilometres`, `cost`) VALUES
 (1, 2, '2024-11-02', 'Revisión', 'Filtres i oli', 288000, 150.00),
 (2, 3, '2025-01-10', 'Rodes', 'Canvi rodes del darrere', 10000, 400.00);
-
-
-CREATE TABLE `ranking_consum_electric` (
-`id_vehicle` int(11)
-,`marca` varchar(100)
-,`model` varchar(100)
-,`matricula` varchar(20)
-,`tipus_combustible` enum('Gasolina','Dièsel','Gas','Elèctric','Híbrid','Híbrid Endollable')
-,`recargues` bigint(21)
-,`mitjana_kwh_recarga` decimal(7,2)
-,`mitjana_kwh_100km` decimal(6,2)
-);
-
-CREATE TABLE `ranking_consum_hibrid` (
-`id_vehicle` int(11)
-,`marca` varchar(100)
-,`model` varchar(100)
-,`matricula` varchar(20)
-,`tipus_combustible` enum('Gasolina','Dièsel','Gas','Elèctric','Híbrid','Híbrid Endollable')
-,`registres` bigint(21)
-,`mitjana_litres` decimal(7,2)
-,`mitjana_kwh` decimal(7,2)
-,`consum_global_ref` decimal(6,2)
-);
-
-CREATE TABLE `ranking_consum_termic` (
-`id_vehicle` int(11)
-,`marca` varchar(100)
-,`model` varchar(100)
-,`matricula` varchar(20)
-,`tipus_combustible` enum('Gasolina','Dièsel','Gas','Elèctric','Híbrid','Híbrid Endollable')
-,`repostatges` bigint(21)
-,`mitjana_litres_repostatge` decimal(7,2)
-,`mitjana_l_100km` decimal(6,2)
-);
-
-
-CREATE TABLE `ranking_gastos_manteniment` (
-`id_vehicle` int(11)
-,`marca` varchar(100)
-,`model` varchar(100)
-,`tipus_combustible` enum('Gasolina','Dièsel','Gas','Elèctric','Híbrid','Híbrid Endollable')
-,`total_intervencions` bigint(21)
-,`cost_total_manteniment` decimal(32,2)
-);
-
-
-CREATE TABLE `ranking_gastos_reparacions` (
-`id_vehicle` int(11)
-,`marca` varchar(100)
-,`model` varchar(100)
-,`tipus_combustible` enum('Gasolina','Dièsel','Gas','Elèctric','Híbrid','Híbrid Endollable')
-,`total_averies` bigint(21)
-,`cost_total_reparacions` decimal(32,2)
-);
-
 
 CREATE TABLE `recordatori` (
   `id_recordatori` int(11) NOT NULL,
