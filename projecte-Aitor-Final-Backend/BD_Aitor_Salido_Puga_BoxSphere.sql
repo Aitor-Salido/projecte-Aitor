@@ -1,13 +1,12 @@
 /*Base de dades exportada de mysql*/
 
+DROP DATABASE IF EXISTS garatge_virtual;
+CREATE DATABASE garatge_virtual;
+USE garatge_virtual;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-DROP DATABASE IF EXISTS garatge_virtual;
-CREATE DATABASE garatge_virtual;
-USE garatge_virtual;
 
 CREATE TABLE `consum` (
   `id_consum` int(11) NOT NULL,
