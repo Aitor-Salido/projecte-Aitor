@@ -31,7 +31,6 @@ function App() {
     }, []);
 
     const location = useLocation().pathname;
-    console.log(location)
 
   return (
     <>
