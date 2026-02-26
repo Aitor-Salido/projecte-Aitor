@@ -121,7 +121,8 @@
               "lineHeight": 1.5,
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -6203,8 +6204,8 @@
     {
       "type": "frame",
       "id": "JJeVT",
-      "x": 0,
-      "y": -400,
+      "x": 159,
+      "y": -565,
       "name": "Component/Footer",
       "reusable": true,
       "width": 1440,

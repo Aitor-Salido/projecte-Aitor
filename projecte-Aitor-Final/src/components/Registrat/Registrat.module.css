@@ -3,104 +3,172 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 60px);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 40px 0;
 }
 
 .formulari_IS_Conetnidor {
   width: 550px; 
-  height: auto;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 40px;
-  box-shadow: 0 4px 12px rgba(149, 149, 149, 0.162);
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   gap: 30px;
   box-sizing: border-box;
-  
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  color: #8b8d97;
+  font-size: 16px;
+  margin: 0;
 }
 
 .formulari_IS {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-/*                                                   He buscat un css en una web que hem feia aquest efecte                                                       */
 .conetnidorAux {
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+  margin-bottom: 0 !important;
 }
 
-.conetnidorAux input {
-  width: 100%;
-  padding: 12px 10px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 1px solid  var(--text-secondary);
-  outline: none;
-  box-sizing: border-box;
-  transition: border-bottom 0.2s ease;
-  background: transparent;
-  margin-bottom: 30px;
-  color: var(--text-secondary);
-}
-
-.conetnidorAux label {
-  position: absolute;
-  top: 12px;
-  left: 10px; 
-  font-size: 16px;
-  color: var(--text-secondary);
-  pointer-events: none;
-  transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-}
-
-.conetnidorAux input:focus + label,
-.conetnidorAux input:not(:placeholder-shown) + label {
-  transform: translateY(-24px);
+.label {
+  color: #c9c9d1;
   font-size: 14px;
-  color: var(--accent-blue);
   font-weight: 500;
+  margin: 0;
 }
 
-.conetnidorAux::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0;
-  background-color: var(--accent-blue);
-  transition: width 0.2s ease;
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0 16px;
+  height: 52px;
+  transition: border-color 0.3s ease;
 }
 
-.conetnidorAux input:focus ~ ::after {
+.inputWrapper:focus-within {
+  border-color: var(--accent-blue); 
+}
+
+.input {
+  color: #ffffff;
   width: 100%;
+  height: 100%;
+  box-shadow: none; 
+  padding: 0;
+  font-size: 15px;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.input,
+.input:focus,
+.input:active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
 
-button {
-  padding: 12px;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #23253000 inset !important;
+  box-shadow: 0 0 0 1000px #23253000 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input::placeholder {
+  color: #6b6d76;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: #6b6d76;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.button {
+  margin-top: 15px;
+  padding: 14px;
   background-color: var(--accent-blue);
-  color: var(--text-dark);
-  font-weight: 900;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
   border: none;
-  border-radius: 9999px;
+  border-radius: 9999px; 
   cursor: pointer;
   transition: background-color 0.2s ease;
+  width: 100%;
 }
 
-button:hover {
-  background-color: var(--accent-blue-hover);
+.button:hover, .button:focus {
+  background-color: var(--accent-blue);
+  outline: none;
+}
+
+.footerText {
+  text-align: center;
+  color: #8b8d97;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .errorText {
-  position: absolute;
-  bottom: 8px;
-  left: 10px;
-  font-size: 11px;
+  font-size: 12px;
   color: #e74c3c;
+  margin-top: 2px;
 }

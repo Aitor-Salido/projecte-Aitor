@@ -7,8 +7,8 @@ export default function Navbar(props) {
   return (
     <nav className={styles.navbar}>
       <div className={styles.contenidorLogo}>
-          <img src="./img/logo_Box.png" className={styles.imatgeLogo}></img>
-          <p>BoxSphere</p>
+        <img src="./img/logo_Box.png" className={styles.imatgeLogo}></img>
+        <p>BoxSphere</p> 
       </div>
       <div>
               <Link className={styles.link} to="/">Inici</Link>
