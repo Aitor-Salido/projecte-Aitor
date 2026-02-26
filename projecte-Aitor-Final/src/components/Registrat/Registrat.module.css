@@ -129,6 +129,14 @@ input:-webkit-autofill:active {
   margin-right: 12px;
   flex-shrink: 0;
 }
+.iconRight {
+  width: 20px;
+  height: 20px;
+  color: #6b6d76;
+  margin-left: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
 
 .button {
   margin-top: 15px;
