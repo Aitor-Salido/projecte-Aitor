@@ -42,7 +42,7 @@ CREATE TABLE `itv` (
   `id_itv` int(11) NOT NULL,
   `id_vehicle` int(11) NOT NULL,
   `data_visita` date NOT NULL,
-  `resultat` enum('Favorable','Desfavorable','Condicional') NOT NULL,
+  `resultat` enum('Favorable','Desfavorable','Pendiente') NOT NULL,
   `observacions` text DEFAULT NULL,
   `quilometres` int(11) DEFAULT NULL,
   `data_propera` date DEFAULT NULL
@@ -64,14 +64,6 @@ INSERT INTO `manteniment` (`id_manteniment`, `id_vehicle`, `data_manteniment`, `
 (1, 2, '2024-11-02', 'Revisión', 'Filtres i oli', 288000, 150.00),
 (2, 3, '2025-01-10', 'Rodes', 'Canvi rodes del darrere', 10000, 400.00);
 
-CREATE TABLE `recordatori` (
-  `id_recordatori` int(11) NOT NULL,
-  `id_usuari` int(11) NOT NULL,
-  `titol` varchar(100) NOT NULL,
-  `descripcio` text DEFAULT NULL,
-  `data_recordatori` date NOT NULL,
-  `estat` enum('pendent','completat') DEFAULT 'pendent'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `reparacions` (

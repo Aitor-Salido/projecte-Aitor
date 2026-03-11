@@ -1,0 +1,274 @@
+
+.contenedorPrincipal {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 40px;
+  min-height: calc(100vh - 60px);
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* tilo principla */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.tituloPagina {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.subtituloPagina {
+  color: #8b8d97;
+  font-size: 16px;
+  margin: 0;
+}
+
+.botonPrincipal {
+  background-color: var(--accent-blue, #5865F2);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.botonPrincipal:hover {
+  opacity: 0.9;
+}
+
+/* cotxes */
+.cuadriculaCoches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.tarjetaCoche {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorImagen {
+  width: 100%;
+  height: 240px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.imagenCoche {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infoCoche {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tituloCoche {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.especificacionesCoche {
+  color: #8b8d97;
+  font-size: 14px;
+  margin: 0;
+}
+
+.contenedorEtiquetas {
+  display: flex;
+  gap: 10px;
+}
+
+.etiquetaInfo {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.etiquetaInfo {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent-blue, #5865F2);
+}
+
+.seccion {
+  margin-bottom: 50px;
+}
+
+.cabeceraSeccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tituloSeccion {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.botonSecundario {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #c9c9d1;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botonSecundario:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* taules */
+.contenedorTabla {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 10px 30px 30px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabla th {
+  color: #8b8d97;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 20px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabla td {
+  padding: 20px 10px;
+  font-size: 14px;
+  color: #c9c9d1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.tabla tr:last-child td { /*si es l'ultim no te borde*/
+  border-bottom: none;
+}
+
+.textoAzul {
+  color: var(--accent-blue, #5865F2) !important;
+  font-weight: 600;
+}
+
+/* itv estat */
+.estadoExito {
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.2);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.estadoPendiente {
+  background: rgba(255, 255, 255, 0.04);
+  color: #8b8d97;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.estadoDesfavorable{
+  background: rgba(204, 46, 46, 0.1);
+  color: #cc2e2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* control consum */
+.cuadriculaEstadisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.tarjetaEstadistica {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.etiquetaEstadistica {
+  font-size: 14px;
+  color: #8b8d97;
+  margin: 0;
+  font-weight: 500;
+}
+
+.valorAzul, .valorMorado, .valorCian {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+.valorAzul { color: var(--accent-blue, #5865F2); } 
+.valorMorado { color: #b084f4; }
+.valorCian { color: #38bdf8; }
+
+.tendenciaPositiva {
+  font-size: 13px;
+  color: #2ecc71;
+  margin: 0;
+}
+.tendenciaIgual{
+  font-size: 13px;
+  color: #8b8d97;
+  margin: 0;
+}
+.tendenciaNegativa {
+  font-size: 13px;
+  color: #cc2e2e;
+  margin: 0;
+}
+
+.detalleEstadistica {
+  font-size: 13px;
+  color: #8b8d97;
+  margin: 0;
+}
