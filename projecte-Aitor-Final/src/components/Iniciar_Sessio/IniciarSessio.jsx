@@ -9,6 +9,7 @@ function Iniciar_Sessio({ onLoginSuccess }) {
   const [contra, setContra] = useState("");
   const navigate = useNavigate();
   const [mostrarContra, setMostrarContra] = useState(false);
+  const [error, setError] = useState("");
 
   const enviar = async (e) => {
     e.preventDefault();
@@ -27,9 +28,11 @@ function Iniciar_Sessio({ onLoginSuccess }) {
       if (data.valor === true) {
         if (onLoginSuccess) onLoginSuccess();
         navigate("/");
+      } else {
+        setError(data.mensaje);
       }
     } catch (error) {
-      console.error(error);
+      setError("Error al iniciar sessió");
     }
   };
 
@@ -45,6 +48,8 @@ function Iniciar_Sessio({ onLoginSuccess }) {
           <h1 className={styles.title}>Iniciar sessió</h1>
           <p className={styles.subtitle}>Benvingut/da de nou a BoxSphere</p>
         </div>
+
+        {error && <div className={styles.error}><p>{error}</p></div>}
 
         <Form onSubmit={enviar} className={styles.formulari_IS} noValidate>
           <FormGroup className={styles.conetnidorAux}>
@@ -118,19 +123,19 @@ function Iniciar_Sessio({ onLoginSuccess }) {
               ) : (
                 <svg
                   onClick={() => setMostrarContra(true)}
-                  className={styles.iconRight} 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                  className={styles.iconRight}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round">
                   <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                   <line x1="1" y1="1" x2="23" y2="23"></line>
                 </svg>
               )}
             </div>
-            <Link className={styles.linkForgot} to="/">
+            <Link className={styles.linkForgot} to="/olvidar">
               Has oblidat la contrasenya?
             </Link>
           </FormGroup>

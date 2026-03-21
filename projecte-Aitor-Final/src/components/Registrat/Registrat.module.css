@@ -180,3 +180,29 @@ input:-webkit-autofill:active {
   color: #e74c3c;
   margin-top: 2px;
 }
+
+.error {
+  background: #ff000058;
+  color: #ff0000;
+  font-size: 14px;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.success {
+  background: #00ff0058;
+  color: #00ff00;
+  font-size: 14px;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.errorText {
+  font-size: 12px;
+  color: #e74c3c;
+  margin-top: 2px;
+}

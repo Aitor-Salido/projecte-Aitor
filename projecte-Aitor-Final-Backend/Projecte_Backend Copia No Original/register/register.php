@@ -27,6 +27,9 @@ if (!isset($data['email'])) {
 
 $contraEncriptada = password_hash($data['contra'], PASSWORD_DEFAULT);
 
+$token = bin2hex(random_bytes(32));
+$token_expirence = date("Y-m-d H:i:s", strtotime("+1 hour"));
+
 $stmt = $conn->prepare("
     INSERT INTO usuari (
         nom,
@@ -35,9 +38,12 @@ $stmt = $conn->prepare("
         email,
         contrasenya,
         data_registre,
-        imatge_perfil
+        imatge_perfil,
+        token_verify,
+        token_expirence,
+        token
     )
-    SELECT ?, ?, ?, ?, ?, CURDATE(), NULL
+    SELECT ?, ?, ?, ?, ?, CURDATE(), NULL, FALSE, ?, ?
     FROM dual
     WHERE NOT EXISTS (
         SELECT 1 FROM usuari WHERE email = ?
@@ -45,18 +51,32 @@ $stmt = $conn->prepare("
 ");
 
 $stmt->bind_param(
-    "ssssss",
+    "ssssssss",
     $data['nom'],
     $data['cognoms'],
     $data['data_nei'],
     $data['email'],
     $contraEncriptada,
+    $token_expirence,
+    $token,
     $data['email']
 );
 
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
+
+        $email = $data['email'];
+        $subject = "Verifica tu cuenta " . $data['nom'] . " " . $data['cognoms'];
+
+        $html = "
+        <h1>Bienvenido a BoxSphere " . $data['nom'] . " " . $data['cognoms'] . "</h1>
+        <p>Haz clic para verificar tu cuenta:</p>
+        <a href='http://localhost:5173/verify_user?token=$token'>Verificar cuenta</a>
+    ";
+
+        require __DIR__ . '/../emails/email.php';
+
         echo json_encode([
             "status" => "success",
             "mensaje" => "Usuario registrado correctamente."

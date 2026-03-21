@@ -1,4 +1,3 @@
-
 .contenedorPrincipal {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   padding: 40px;
@@ -7,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* tilo principla */
+/* titulo principal */
 .cabecera {
   display: flex;
   justify-content: space-between;
@@ -100,11 +99,14 @@
 }
 
 .etiquetaInfo {
+  display: flex;
+  align-items: center;
   font-size: 13px;
   padding: 6px 14px;
   border-radius: 12px;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
 }
 
 .etiquetaInfo {

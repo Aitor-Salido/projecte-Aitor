@@ -1,18 +1,30 @@
 :root {
-    /* Textos */
-    --text-main: #e5e7eb;      /* blanco suave (principal) */
-    --text-secondary: #b6c0cc; /* gris claro frío */
-    --text-muted: #7b8794;     /* gris apagado */
+    --text-main: #e5e7eb;      
+    --text-secondary: #b6c0cc; 
+    --text-muted: #7b8794;     
     --text-dark: #1d265a; 
 
-    /* Acentos modernos */
-    --accent-blue: #037ffe;    /* azul moderno */
+
+    --accent-blue: #037ffe;    
     --accent-blue-hover: #38bdf8;
-    --accent-cyan: #38bdf8;    /* cyan suave */
-    --accent-purple: #9d7cff;  /* violeta elegante */
-    --accent-green: #4ade80;   /* verde suave */
+    --accent-cyan: #38bdf8;    
+    --accent-purple: #9d7cff;  
+    --accent-green: #4ade80; 
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #111827;
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 65px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 10px;
+}
 
 body {
   margin: 0;
@@ -20,9 +32,9 @@ body {
   font-family: system-ui, sans-serif;
     background: linear-gradient(
         135deg,
-        #0f172a,   /* azul oscuro elegante */
-        #111827,   /* gris oscuro */
-        #020617    /* casi negro */
+        #0f172a,  
+        #111827,  
+        #020617   
     );
     background-size: 200% 200%;
     animation: gradientShift 20s ease infinite;

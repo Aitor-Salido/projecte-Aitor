@@ -1,22 +1,4 @@
 <?php
-/*
-require 'vendor/autoload.php';
-
-use Resend;
-
-$resend = Resend::client('re_7LAMHkas_H8XTgiQSmtMxCDdowvaqNgm5');
-
-$params = [
-    "from" => "aisapu@inspalamos.cat",
-    "to" => ["aitorsalidopuga2006@gmail.com"],
-    "subject" => "Probando Resend desde XAMPP 🚀",
-    "html" => "<strong>Funciona perfectamente 🔥</strong>"
-];
-
-$email = $resend->emails->send($params);
-
-print_r($email);
-*/
 
 session_set_cookie_params([
     'lifetime' => 0,
@@ -40,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$conn = new mysqli("localhost:6001", "root", "", "garatge_virtual");
+$conn = @new mysqli("localhost:6001", "root", "", "garatge_virtual");
 $conn->set_charset("utf8mb4");
 
 if ($conn->connect_error) {
@@ -55,7 +37,7 @@ if (!isset($data['email'])) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT contrasenya, id_usuari FROM usuari WHERE email = ?");
+$stmt = $conn->prepare("SELECT contrasenya, id_usuari FROM usuari WHERE email = ? AND token_verify = TRUE");
 $stmt->bind_param("s", $data['email']);
 $stmt->execute();
 

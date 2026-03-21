@@ -8,23 +8,23 @@ export default function Navbar(props) {
     <nav className={styles.navbar}>
       <div className={styles.contenidorLogo}>
         <img src="./img/logo_Box.png" className={styles.imatgeLogo}></img>
-        <p>BoxSphere</p> 
+        <p>BoxSphere</p>
       </div>
       <div>
-              <Link className={styles.link} to="/">Inici</Link>
-              {isLogged ? (
-              <>
-                <Link className={styles.link} to="/forum">Forum</Link>
-                <Link className={styles.link} to="/ranking">Ranking</Link>
-                <Link className={styles.link} to="/garatje">Garatje</Link>
-                <Link className={styles.link} to="/perfil">Perfil</Link>
-              </>
-            ) : (
-              <>
-                <Link className={styles.link} to="/iniciar_sessio">Iniciar Sessió</Link>
-                <Link className={styles.link} to="/registrat">Registrat</Link>
-              </>
-            )}
+        <Link className={styles.link} to="/">Inici</Link>
+        {isLogged ? (
+          <>
+            <Link className={styles.link} to="/forum">Forum</Link>
+            <Link className={styles.link} to="/ranking">Ranking</Link>
+            <Link className={styles.link} to="/garatje">Garatje</Link>
+            <Link className={styles.link} to="/perfil">Perfil</Link>
+          </>
+        ) : (
+          <>
+            <Link className={styles.link} to="/iniciar_sessio">Iniciar Sessió</Link>
+            <Link className={styles.link} to="/registrat">Registrat</Link>
+          </>
+        )}
       </div>
     </nav>
   )

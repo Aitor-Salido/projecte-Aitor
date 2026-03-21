@@ -16,6 +16,9 @@ function Registrar() {
   const [mostrarContra, setMostrarContra] = useState(false);
   const [mostrarContra2, setMostrarContra2] = useState(false);
 
+  const [errorBack, setErrorBack] = useState("");
+  const [successBack, setSuccessBack] = useState("");
+
   const validarFormulario = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const contraRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
@@ -38,11 +41,20 @@ function Registrar() {
 
     if (validarFormulario()) {
       const signInData = { nom, cognoms, data_nei, email, contra, rep_contra };
-      
+
       httpRequest('http://localhost/Projecte_Backend/register/register.php', 'POST', signInData)
         .then(res => {
-          setNom(""); setCognoms(""); setData_nei(""); setEmail(""); setContra(""); setRep_contra("");
-          navigate('/');
+          if (res.status === "success") {
+            setSuccessBack("Usuari registrat correctament verifiqui el seu correu electrònic per activar la seva compte");
+            setNom("");
+            setCognoms("");
+            setData_nei("");
+            setEmail("");
+            setContra("");
+            setRep_contra("");
+          } else {
+            setErrorBack(res.mensaje);
+          }
         })
         .catch(err => {
           console.error(err);
@@ -60,15 +72,16 @@ function Registrar() {
   return (
     <div className={styles.contenidorPrincipal}>
       <div className={styles.formulari_IS_Conetnidor}>
-        
+
         <div className={styles.header}>
           <img src="./img/logo_Box.png" alt="BoxSphere Logo" className={styles.logo} />
           <h1 className={styles.title}>Registra't</h1>
           <p className={styles.subtitle}>Crea el teu compte a BoxSphere</p>
         </div>
-
+        {errorBack && <div className={styles.error}><p>{errorBack}</p></div>}
+        {successBack && <div className={styles.success}><p>{successBack}</p></div>}
         <Form onSubmit={enviar} className={styles.formulari_IS} noValidate>
-          
+
           <FormGroup className={styles.conetnidorAux}>
             <Label htmlFor="nom" className={styles.label} style={errors.nom ? { color: '#e74c3c' } : {}}>Nom</Label>
             <div className={styles.inputWrapper} style={errors.nom ? { borderColor: '#e74c3c' } : {}}>
@@ -137,7 +150,7 @@ function Registrar() {
             <div className={styles.inputWrapper} style={errors.contra ? { borderColor: '#e74c3c' } : {}}>
               <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
               <Input
-               type={mostrarContra ? "text" : "password"}
+                type={mostrarContra ? "text" : "password"}
                 id="contra"
                 value={contra}
                 placeholder="••••••••"
@@ -162,12 +175,12 @@ function Registrar() {
               ) : (
                 <svg
                   onClick={() => setMostrarContra(true)}
-                  className={styles.iconRight} 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                  className={styles.iconRight}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round">
                   <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                   <line x1="1" y1="1" x2="23" y2="23"></line>
@@ -182,14 +195,14 @@ function Registrar() {
             <div className={styles.inputWrapper} style={errors.rep_contra ? { borderColor: '#e74c3c' } : {}}>
               <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
               <Input
-              type={mostrarContra2 ? "text" : "password"}
+                type={mostrarContra2 ? "text" : "password"}
                 id="rep_contra"
                 value={rep_contra}
                 placeholder="••••••••"
                 onChange={(e) => handleChange(setRep_contra, 'rep_contra', e.target.value)}
                 className={styles.input}
               />
-                            {mostrarContra2 ? (
+              {mostrarContra2 ? (
                 <svg
                   onClick={() => setMostrarContra2(false)}
                   className={styles.iconRight}
@@ -206,12 +219,12 @@ function Registrar() {
               ) : (
                 <svg
                   onClick={() => setMostrarContra2(true)}
-                  className={styles.iconRight} 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                  className={styles.iconRight}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round">
                   <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                   <line x1="1" y1="1" x2="23" y2="23"></line>
@@ -222,7 +235,7 @@ function Registrar() {
           </FormGroup>
 
           <Button type="submit" className={styles.button}>Registrar-se</Button>
-          
+
           <div className={styles.footerText}>
             Ja tens compte? <Link className={styles.link} to="/iniciar_sessio">Inicia sessió</Link>
           </div>

@@ -181,3 +181,13 @@ input:-webkit-autofill:active {
 .link:hover {
   text-decoration: underline;
 }
+
+.error {
+  background: #ff000058;
+  color: #ff0000;
+  font-size: 14px;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}

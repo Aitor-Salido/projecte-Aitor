@@ -87,12 +87,34 @@ CREATE TABLE `usuari` (
   `email` varchar(100) NOT NULL,
   `contrasenya` varchar(255) NOT NULL,
   `data_registre` date DEFAULT curdate(),
-  `imatge_perfil` varchar(255) DEFAULT NULL
+  `imatge_perfil` LONGBLOB DEFAULT NULL,
+  `token_verify` BOOLEAN DEFAULT FALSE,
+  `token_expirence` TIMESTAMP NULL,
+  `token` VARCHAR(255) DEFAULT NULL,
+  `token_expirence_contra` TIMESTAMP NULL,
+  `token_contra` VARCHAR(255) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT borrar_expirados
+ON SCHEDULE EVERY 1 MINUTE
+DO
+DELETE FROM usuari
+WHERE token_expirence < NOW();
+
+CREATE EVENT borrar_contra
+ON SCHEDULE EVERY 1 MINUTE
+DO
+UPDATE usuari
+SET 
+  token_expirence_contra = NULL,
+  token_contra = NULL
+WHERE token_expirence_contra < NOW();
 
 INSERT INTO `usuari` (`id_usuari`, `nom`, `cognoms`, `data_naixement`, `email`, `contrasenya`, `data_registre`, `imatge_perfil`) VALUES
-(1, 'Aitor', 'Salido Puga', '2006-09-25', 'aisapu@inspalamos.cat', '$2y$10$4iI2Yd3A4mgrRl/WmpnfHu/SfAhmrvAIaYbUPTObMIIodaBz2Rpvu', '2025-11-05', 'img/aitor.png'),
+(1, 'Aitor', 'Salido Puga', '2006-09-25', 'aisapu@inspalamos.cat', '$2y$10$4iI2Yd3A4mgrRl/WmpnfHu/SfAhmrvAIaYbUPTObMIIodaBz2Rpvu', '2025-11-05', NULL),
 (5, 'Jesús', 'Aldoman Ortiz', '2005-03-31', 'jealor@inspalamos.cat', '$2y$10$4APw6Gs5Z.QV8u09r6kxiuMhS9AGe2.J..2aQ/oY5eVZ68Fp4nMEC', '2026-01-29', NULL),
 (16, 'q3243654657647536425341', '13254365476u57i5674563', '0211-02-05', '325461@g.c', '$2y$10$vlqagdwvw8t3EyxNmJG9p.Ht8BWHYVh7Mfv66WX6dHJYoJCyM5XEq', '2026-01-29', NULL),
 (17, 'Jesús', 'Aldoman Ortiz', '0003-03-03', 'jsbjsj347@gmail.com', '$2y$10$KbT6O7Vt18JUPPFnSSGa0eixaW3/Eb3kZkWg65N6W10qiVVc7AOUy', '2026-01-29', NULL);
@@ -107,14 +129,15 @@ CREATE TABLE `vehicle` (
   `any_fabricacio` int(11) DEFAULT NULL,
   `matricula` varchar(20) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
-  `imatge` varchar(255) DEFAULT NULL
+  `imatge` LONGBLOB DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 INSERT INTO `vehicle` (`id_vehicle`, `id_usuari`, `marca`, `model`, `tipus_combustible`, `any_fabricacio`, `matricula`, `color`, `imatge`) VALUES
-(1, 1, 'Volkswagen', 'Touareg R', 'Híbrid Endollable', 2021, '1234ABC', 'Negre', 'img/touareg_r.jpg'),
-(2, 1, 'Volkswagen', 'Touareg 2.5 TDI', 'Dièsel', 2004, '5678XYZ', 'Gris', 'img/touareg_tdi.jpg'),
-(3, 1, 'Tesla', 'Model 3', 'Elèctric', 2023, '9999ELEC', 'Blanc', 'img/tesla.jpg');
+(1, 1, 'Volkswagen', 'Touareg R', 'Híbrid Endollable', 2021, '1234ABC', 'Negre', NULL),
+(2, 1, 'Volkswagen', 'Touareg 2.5 TDI', 'Dièsel', 2004, '5678XYZ', 'Gris', NULL),
+(3, 1, 'Tesla', 'Model 3', 'Elèctric', 2023, '9999ELEC', 'Blanc', NULL);
 
 
 CREATE VIEW `ranking_consum_termic` AS
@@ -179,7 +202,6 @@ ALTER TABLE `consum`  ADD PRIMARY KEY (`id_consum`), ADD KEY `id_vehicle` (`id_v
 ALTER TABLE `forum`  ADD PRIMARY KEY (`id_post`), ADD KEY `id_usuari` (`id_usuari`), ADD KEY `forum_ibfk_2` (`id_vehicle`);
 ALTER TABLE `itv`  ADD PRIMARY KEY (`id_itv`), ADD KEY `id_vehicle` (`id_vehicle`);
 ALTER TABLE `manteniment`  ADD PRIMARY KEY (`id_manteniment`), ADD KEY `id_vehicle` (`id_vehicle`);
-ALTER TABLE `recordatori`  ADD PRIMARY KEY (`id_recordatori`), ADD KEY `id_usuari` (`id_usuari`);
 ALTER TABLE `reparacions`  ADD PRIMARY KEY (`id_reparacio`), ADD KEY `id_vehicle` (`id_vehicle`);
 ALTER TABLE `usuari`  ADD PRIMARY KEY (`id_usuari`), ADD UNIQUE KEY `email` (`email`);
 ALTER TABLE `vehicle`  ADD PRIMARY KEY (`id_vehicle`), ADD UNIQUE KEY `matricula` (`matricula`), ADD KEY `id_usuari` (`id_usuari`);
@@ -188,7 +210,6 @@ ALTER TABLE `consum`  MODIFY `id_consum` int(11) NOT NULL AUTO_INCREMENT, AUTO_I
 ALTER TABLE `forum`  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `itv`  MODIFY `id_itv` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `manteniment`  MODIFY `id_manteniment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-ALTER TABLE `recordatori`  MODIFY `id_recordatori` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `reparacions`  MODIFY `id_reparacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE `usuari`  MODIFY `id_usuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 ALTER TABLE `vehicle`  MODIFY `id_vehicle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
@@ -197,7 +218,6 @@ ALTER TABLE `consum`  ADD CONSTRAINT `consum_ibfk_1` FOREIGN KEY (`id_vehicle`) 
 ALTER TABLE `forum`  ADD CONSTRAINT `forum_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE,  ADD CONSTRAINT `forum_ibfk_2` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id_vehicle`) ON DELETE SET NULL;
 ALTER TABLE `itv`  ADD CONSTRAINT `itv_ibfk_1` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id_vehicle`) ON DELETE CASCADE;
 ALTER TABLE `manteniment`  ADD CONSTRAINT `manteniment_ibfk_1` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id_vehicle`) ON DELETE CASCADE;
-ALTER TABLE `recordatori`  ADD CONSTRAINT `recordatori_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE;
 ALTER TABLE `reparacions`  ADD CONSTRAINT `reparacions_ibfk_1` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id_vehicle`) ON DELETE CASCADE;
 ALTER TABLE `vehicle`  ADD CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE;
 COMMIT;
