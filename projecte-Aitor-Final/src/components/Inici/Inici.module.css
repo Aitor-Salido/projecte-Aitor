@@ -1,4 +1,4 @@
-.container {
+.contenedorPrincipal {
   color: #e5e7eb;
   padding: 40px 20px;
   max-width: 1200px;
@@ -8,7 +8,7 @@
   gap: 120px;
 }
 
-.hero {
+.seccionHero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   margin-top: 60px;
 }
 
-.badge {
+.etiquetaMiniTitulo {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -30,7 +30,7 @@
   margin-bottom: 24px;
 }
 
-.heroTitle {
+.tituloPrincipal {
   font-size: 56px;
   font-weight: 800;
   line-height: 1.1;
@@ -38,7 +38,7 @@
   color: #ffffff;
 }
 
-.heroSubtitle {
+.textoSecundario {
   font-size: 18px;
   color: #b6c0cc;
   max-width: 650px;
@@ -46,13 +46,13 @@
   line-height: 1.6;
 }
 
-.buttonGroup {
+.grupoBotones {
   display: flex;
   gap: 16px;
   margin-bottom: 60px;
 }
 
-.btnPrimary {
+.botonPrincipal {
   background-color: #037ffe;
   color: #ffffff;
   font-weight: 600;
@@ -64,11 +64,11 @@
   transition: opacity 0.2s;
 }
 
-.btnPrimary:hover {
+.botonPrincipal:hover {
   opacity: 0.9;
 }
 
-.btnSecondary {
+.botonSecundario {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #e5e7eb;
@@ -80,18 +80,18 @@
   transition: background 0.2s;
 }
 
-.btnSecondary:hover {
+.botonSecundario:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.heroImageWrapper {
+.contenedorImagenHero {
   width: 100%;
   max-width: 1000px;
   position: relative;
   margin-bottom: 40px;
 }
 
-.heroImageWrapper::before {
+.contenedorImagenHero::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -105,7 +105,7 @@
   z-index: -1;
 }
 
-.heroImage {
+.imagenHero {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -113,7 +113,7 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.trustBar {
+.barraConfianza {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -122,7 +122,7 @@
   color: #7b8794;
 }
 
-.trustItem {
+.elementoConfianza {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -130,23 +130,23 @@
   font-weight: 500;
 }
 
-.icon {
+.icono {
   font-size: 16px;
 }
 
-.section {
+.seccionNormal {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.sectionHeader {
+.cabeceraSeccion {
   text-align: center;
   margin-bottom: 50px;
   max-width: 600px;
 }
 
-.tag {
+.etiquetaSeccion {
   color: #037ffe;
   font-size: 12px;
   font-weight: 700;
@@ -156,27 +156,27 @@
   display: block;
 }
 
-.sectionHeader h2 {
+.cabeceraSeccion h2 {
   font-size: 36px;
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 16px 0;
 }
 
-.sectionHeader p {
+.cabeceraSeccion p {
   font-size: 16px;
   color: #b6c0cc;
   margin: 0;
 }
 
-.grid3 {
+.cuadriculaTresColumnas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   width: 100%;
 }
 
-.card {
+.tarjetaInformacion {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -184,12 +184,12 @@
   transition: transform 0.2s, background 0.2s;
 }
 
-.card:hover {
+.tarjetaInformacion:hover {
   background: rgba(255, 255, 255, 0.04);
   transform: translateY(-5px);
 }
 
-.iconWrapper {
+.contenedorIcono {
   width: 48px;
   height: 48px;
   background: rgba(0, 0, 0, 0);
@@ -200,26 +200,26 @@
   margin-bottom: 20px;
 }
 
-.iconWrapper img {
+.contenedorIcono img {
   width: 48px;
   height: 48px;
 }
 
-.card h3 {
+.tarjetaInformacion h3 {
   font-size: 20px;
   font-weight: 600;
   color: #ffffff;
   margin: 0 0 12px 0;
 }
 
-.card p {
+.tarjetaInformacion p {
   font-size: 14px;
   color: #7b8794;
   line-height: 1.6;
   margin: 0;
 }
 
-.stepCard {
+.tarjetaPaso {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -230,7 +230,7 @@
   padding: 40px 32px;
 }
 
-.stepNumber {
+.numeroPaso {
   width: 48px;
   height: 48px;
   background: linear-gradient(135deg, #037ffe, #9d7cff);
@@ -245,21 +245,21 @@
   box-shadow: 0 0 20px rgba(3, 127, 254, 0.3);
 }
 
-.stepCard h3 {
+.tarjetaPaso h3 {
   font-size: 20px;
   font-weight: 600;
   color: #ffffff;
   margin: 0 0 12px 0;
 }
 
-.stepCard p {
+.tarjetaPaso p {
   font-size: 14px;
   color: #7b8794;
   line-height: 1.6;
   margin: 0;
 }
 
-.splitSection {
+.seccionDividida {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
@@ -267,7 +267,7 @@
   width: 100%;
 }
 
-.splitText h2 {
+.textoDividido h2 {
   font-size: 36px;
   font-weight: 700;
   color: #ffffff;
@@ -275,14 +275,14 @@
   line-height: 1.2;
 }
 
-.splitText p {
+.textoDividido p {
   font-size: 16px;
   color: #b6c0cc;
   line-height: 1.6;
   margin: 0;
 }
 
-.splitImage img {
+.imagenDividida img {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -290,14 +290,14 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.grid2 {
+.cuadriculaDosColumnas {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   width: 100%;
 }
 
-.statsSection {
+.seccionEstadisticas {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -308,14 +308,14 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.statBox {
+.cajaEstadistica {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.statNumberText {
+.textoNumeroEstadistica {
   font-size: 42px;
   font-weight: 800;
   color: #9d7cff;
@@ -324,13 +324,13 @@
   -webkit-text-fill-color: transparent;
 }
 
-.statLabel {
+.etiquetaEstadistica {
   font-size: 14px;
   color: #b6c0cc;
   font-weight: 500;
 }
 
-.ctaSection {
+.seccionLlamadaAccion {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -338,27 +338,27 @@
   padding: 20px 0 60px 0;
 }
 
-.ctaSection h2 {
+.seccionLlamadaAccion h2 {
   font-size: 36px;
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 16px 0;
 }
 
-.ctaSection p {
+.seccionLlamadaAccion p {
   font-size: 16px;
   color: #b6c0cc;
   margin: 0 0 32px 0;
 }
 
 @media (max-width: 900px) {
-  .grid3, .splitSection, .grid2 {
+  .cuadriculaTresColumnas, .seccionDividida, .cuadriculaDosColumnas {
     grid-template-columns: 1fr;
   }
-  .heroTitle {
+  .tituloPrincipal {
     font-size: 40px;
   }
-  .splitSection {
+  .seccionDividida {
     gap: 40px;
   }
 }

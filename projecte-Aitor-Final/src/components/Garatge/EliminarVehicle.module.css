@@ -1,0 +1,129 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  color: #8b8d97;
+  font-size: 16px;
+  margin: 0;
+}
+
+.formulari_IS {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.botonEliminar {
+  margin-top: 30px;
+  padding: 14px;
+  background-color: var(--accent-red, #ff0000);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 9999px; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.botonEliminar:hover, .botonEliminar:focus {
+  background-color: var(--accent-red, #ff0000);
+  outline: none;
+  opacity: 0.9;
+}
+
+.botonCancelar {
+  margin-top: 10px;
+  padding: 14px;
+  background-color: var(--accent-blue, #3498db);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 9999px; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.botonCancelar:hover, .botonCancelar:focus {
+  background-color: var(--accent-blue, #2980b9);
+  outline: none;
+  opacity: 0.9;
+}
+
+.loaderContainer {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--accent-blue);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+.error {
+  background: #ff000058;
+  color: #ff0000;
+  font-size: 14px;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.success {
+  background: #00ff0058;
+  color: #00ff00;
+  font-size: 14px;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.resultatContainer {
+  margin-top: 20px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00ff0058;
+  border-radius: 10px;
+}
+
+.resultat {
+  color: #00ff00;
+  font-size: 16px;
+  font-weight: 600;
+}

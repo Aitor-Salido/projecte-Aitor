@@ -208,3 +208,19 @@ input:-webkit-autofill:active {
   margin-right: 12px;
   flex-shrink: 0;
 }
+
+.resultatContainer {
+  margin-top: 20px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00ff0058;
+  border-radius: 10px;
+}
+
+.resultat {
+  color: #00ff00;
+  font-size: 16px;
+  font-weight: 600;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Garatge.module.css";
 import AfegirVehicle from "./AfegirVehicle";
+import EliminarVehicle from "./EliminarVehicle";
 
 export default function Garatge() {
   const [cotxes, setCotxes] = useState([]);
@@ -8,11 +9,14 @@ export default function Garatge() {
   const [reparacions, setReparacions] = useState([]);
   const [itvs, setItvs] = useState([]);
   const [controls, setControls] = useState();
+  const [consums, setConsums] = useState([]);
 
 
   const [showAfegirVehicle, setShowAfegirVehicle] = useState(false);
   const [showRepostar, setShowRepostar] = useState(false);
   const [showEliminar, setShowEliminar] = useState(false);
+  const [selectedVehicleId, setSelectedVehicleId] = useState(null);
+
   const cargarCoches = () => {
     fetch("http://localhost/Projecte_Backend/garatge/mostrarCoches.php", {
       method: "GET",
@@ -53,6 +57,11 @@ export default function Garatge() {
       .then(res => res.json()).then(data => setControls(data)).catch(err => console.error(err));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost/Projecte_Backend/garatge/consums.php", { method: "GET", credentials: "include" })
+      .then(res => res.json()).then(data => setConsums(data)).catch(err => console.error(err));
+  }, []);
+
   return (
     <main className={styles.contenedorPrincipal}>
 
@@ -68,6 +77,7 @@ export default function Garatge() {
 
       <section className={styles.cuadriculaCoches}>
         {cotxes.map(cotxe => (
+
           <div key={cotxe.id_vehicle} className={styles.tarjetaCoche}>
             <div className={styles.contenedorImagen}>
               <img
@@ -145,8 +155,8 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                   )}
                 </span>
                 <div className={styles.contenedorBotones}>
-                  <button className={styles.botonRepostar} onClick={() => setShowRepostar(true)}>Repostar</button>
-                  <button className={styles.botonEliminar} onClick={() => setShowEliminar(true)}>Eliminar vehicle</button>
+                  <button className={styles.botonRepostar} onClick={() => { setShowRepostar(true); setSelectedVehicleId(cotxe.id_vehicle); }}>Repostar</button>
+                  <button className={styles.botonEliminar} onClick={() => { setShowEliminar(true); setSelectedVehicleId(cotxe.id_vehicle); }}>Eliminar vehicle</button>
                 </div>
               </div>
             </div>
@@ -176,8 +186,8 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                   <td>{manteniment.tipus_manteniment}</td>
                   <td>{manteniment.marca} {manteniment.model}</td>
                   <td>{manteniment.descripcio_manteniment}</td>
-                  <td>{manteniment.data_manteniment}</td>
-                  <td className={styles.textoAzul}>{manteniment.cost}€</td>
+                  <td>{manteniment.data_manteniment.split("-").reverse().join("/")}</td>
+                  <td className={styles.textoAzul}>{manteniment.cost.toLocaleString('es-ES')}€</td>
                 </tr>
               ))}
             </tbody>
@@ -208,9 +218,9 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                   <td>{reparacio.marca} {reparacio.model}</td>
                   <td>{reparacio.descripcio}</td>
                   <td>{reparacio.taller}</td>
-                  <td>{reparacio.quilometres} km</td>
-                  <td>{reparacio.data_reparacio}</td>
-                  <td className={styles.textoAzul}>{reparacio.cost}€</td>
+                  <td>{reparacio.quilometres.toLocaleString('es-ES')} km</td>
+                  <td>{reparacio.data_reparacio.split("-").reverse().join("/")}</td>
+                  <td className={styles.textoAzul}>{reparacio.cost.toLocaleString('es-ES')}€</td>
                 </tr>
               ))}
             </tbody>
@@ -239,7 +249,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
               {itvs.map(itv => (
                 <tr key={itv.id_itv}>
                   <td>{itv.marca} {itv.model}</td>
-                  <td>{itv.data_visita}</td>
+                  <td>{itv.data_visita.split("-").reverse().join("/")}</td>
                   <td>
                     <span className={
                       itv.resultat === 'Favorable' ?
@@ -251,8 +261,8 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                     </span>
                   </td>
                   <td>{itv.observacions}</td>
-                  <td>{itv.quilometres}</td>
-                  <td>{itv.data_propera}</td>
+                  <td>{itv.quilometres.toLocaleString('es-ES')} km</td>
+                  <td>{itv.data_propera.split("-").reverse().join("/")}</td>
                 </tr>
               ))}
             </tbody>
@@ -311,7 +321,11 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                 : "N/A"}
             </p>
             <p className={styles.detalleEstadistica}>
-              Últim repostatge: {controls?.ultim_repostatge || "N/A"}
+              Últim repostatge: {
+                controls?.ultim_repostatge
+                  ? controls.ultim_repostatge.split("-").reverse().join("/")
+                  : "N/A"
+              }
             </p>
           </div>
 
@@ -336,6 +350,44 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                 : "N/A"}
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className={styles.seccion}>
+        <div className={styles.cabeceraSeccion}>
+          <h2 className={styles.tituloSeccion}>Historial de Repostatges</h2>
+        </div>
+        <div className={styles.contenedorTabla}>
+          <table className={styles.tabla}>
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>Tipus Combustible</th>
+                <th>Litres</th>
+                <th>kWh</th>
+                <th>Quilometres recorreguts</th>
+                <th>Consum mitjà</th>
+                <th>Quilometres actuals</th>
+                <th>Data</th>
+                <th>Cost total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {consums.map(consum => (
+                <tr key={consum.id_consum}>
+                  <td>{consum.marca} {consum.model}</td>
+                  <td>{consum.tipus_combustible}</td>
+                  <td>{consum.litres === null ? "N/A" : consum.litres}</td>
+                  <td>{consum.kwh === null ? "N/A" : consum.kwh}</td>
+                  <td>{consum.quilometres_recorreguts.toLocaleString('es-ES')} km</td>
+                  <td>{consum.consum_mitja_obc}</td>
+                  <td>{consum.quilometres_actuals.toLocaleString('es-ES')} km</td>
+                  <td>{consum.data.split("-").reverse().join("/")}</td>
+                  <td className={styles.textoAzul}>{consum.cost_total.toLocaleString('es-ES')}€</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -369,7 +421,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
             >
               ✖
             </button>
-            <Repostar
+            <Repostar id_vehicle={selectedVehicleId}
               alTerminar={() => {
                 setShowRepostar(false);
                 cargarCoches();
@@ -388,7 +440,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
             >
               ✖
             </button>
-            <EliminarVehicle
+            <EliminarVehicle id_vehicle={selectedVehicleId}
               alTerminar={() => {
                 setShowEliminar(false);
                 cargarCoches();

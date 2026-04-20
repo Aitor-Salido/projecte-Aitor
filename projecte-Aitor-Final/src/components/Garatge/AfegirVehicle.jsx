@@ -10,6 +10,7 @@ export default function AfegirVehicle({ alTerminar }) {
         matricula: "",
         color: "",
         any: "",
+        publicar_ranking: false,
     });
 
     const [imagen, setImagen] = useState(null);
@@ -20,9 +21,11 @@ export default function AfegirVehicle({ alTerminar }) {
     const [successBack, setSuccessBack] = useState("");
 
     const handleChange = (e) => {
+        const { name, type, value, checked } = e.target;
+
         setForm({
             ...form,
-            [e.target.name]: e.target.value,
+            [name]: type === "checkbox" ? checked : value,
         });
     };
 
@@ -46,7 +49,7 @@ export default function AfegirVehicle({ alTerminar }) {
         formData.append("color", form.color);
         formData.append("any", form.any);
         formData.append("imagen", imagen);
-        formData.append("publicar_ranking", form.publicar_ranking);
+        formData.append("publicar_ranking", form.publicar_ranking ? 1 : 0);
 
         try {
             const res = await fetch("http://localhost/Projecte_Backend/garatge/afegirVehicle.php", {
@@ -60,7 +63,9 @@ export default function AfegirVehicle({ alTerminar }) {
             if (data.ok) {
                 if (alTerminar) {
                     setSuccessBack("Vehicle afegit correctament");
-                    alTerminar();
+                    setTimeout(() => {
+                        alTerminar();
+                    }, 2000);
                 }
             } else {
                 setErrorBack("Error al añadir el coche");
@@ -74,7 +79,8 @@ export default function AfegirVehicle({ alTerminar }) {
     return (
         <div className={styles.contenidorPrincipal}>
             {carrega && <div className={styles.loaderContainer}><span className={styles.loader}></span></div>}
-            <div className={styles.formulari_IS_Conetnidor} style={{ display: carrega ? "none" : "" }}>
+            {successBack && <div className={styles.resultatContainer}><span className={styles.resultat}>{successBack}</span></div>}
+            <div className={styles.formulari_IS_Conetnidor} style={{ display: carrega ? "none" : "" || successBack != "" ? "none" : "" }}>
 
                 <div className={styles.header}>
                     <h1 className={styles.title}>Afegir Vehicle</h1>
@@ -206,6 +212,7 @@ export default function AfegirVehicle({ alTerminar }) {
                                 type="checkbox"
                                 name="publicar_ranking"
                                 id="publicar_ranking"
+                                checked={form.publicar_ranking}
                                 onChange={handleChange}
                                 className={styles.check}
                             />

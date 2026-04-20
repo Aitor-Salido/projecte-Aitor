@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Inici from './components/Inici/Inici'
 import Forum from './components/Forum/Forum'
 import Ranking from './components/Ranking/Ranking'
-import Garatje from './components/Garatje/Garatje'
+import Garatge from './components/Garatge/Garatge'
 import Perfil from './components/Perfil/Perfil'
 import IniciarSessio from './components/Iniciar_Sessio/IniciarSessio'
 import Registrat from './components/Registrat/Registrat'
@@ -53,7 +53,7 @@ function App() {
           <Route element={<ProtectedRoute isAllowed={!!isLogged} />}>
             <Route path="/forum" element={<Forum />} />
             <Route path="/ranking" element={<Ranking />} />
-            <Route path="/garatje" element={<Garatje />} />
+            <Route path="/garatge" element={<Garatge />} />
             <Route path="/perfil" element={<Perfil />} />
           </Route>
 

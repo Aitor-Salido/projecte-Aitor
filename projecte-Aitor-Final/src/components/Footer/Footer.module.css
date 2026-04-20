@@ -1,0 +1,88 @@
+.pieDePagina {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 60px 0 20px 0;
+  width: 100%;
+}
+
+.contenedorColumnasPie {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.columnaLogoPie {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoPie {
+  width: 160px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logoPie:hover {
+  transform: scale(1.05);
+}
+
+.textoSecundarioPie {
+  color: #b6c0cc;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.columnaEnlacesPie {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tituloColumnaPie {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.enlacePie {
+  color: #b6c0cc;
+  font-size: 14px;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.enlacePie:hover {
+  color: #037ffe;
+}
+
+.derechosReservadosPie {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+  text-align: center;
+}
+
+.derechosReservadosPie p {
+  color: #7b8794;
+  font-size: 13px;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .contenedorColumnasPie {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contenedorColumnasPie {
+    grid-template-columns: 1fr;
+  }
+}
