@@ -1,0 +1,364 @@
+.container {
+  color: #e5e7eb;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(3, 127, 254, 0.1);
+  border: 1px solid rgba(3, 127, 254, 0.2);
+  color: #38bdf8;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.heroTitle {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+}
+
+.heroSubtitle {
+  font-size: 18px;
+  color: #b6c0cc;
+  max-width: 650px;
+  margin: 0 0 40px 0;
+  line-height: 1.6;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.btnPrimary {
+  background-color: #037ffe;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.9;
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 9999px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.heroImageWrapper {
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.heroImageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: #037ffe;
+  filter: blur(140px);
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.trustBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 14px;
+  color: #7b8794;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #b6c0cc;
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+}
+
+.tag {
+  color: #037ffe;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.sectionHeader h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.sectionHeader p {
+  font-size: 16px;
+  color: #b6c0cc;
+  margin: 0;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 32px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-5px);
+}
+
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.iconWrapper img {
+  width: 48px;
+  height: 48px;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #7b8794;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px 32px;
+}
+
+.stepNumber {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #037ffe, #9d7cff);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 20px rgba(3, 127, 254, 0.3);
+}
+
+.stepCard h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+
+.stepCard p {
+  font-size: 14px;
+  color: #7b8794;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.splitSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+.splitText h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.splitText p {
+  font-size: 16px;
+  color: #b6c0cc;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.splitImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.statsSection {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.statNumberText {
+  font-size: 42px;
+  font-weight: 800;
+  color: #9d7cff;
+  background: linear-gradient(to right, #9d7cff, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #b6c0cc;
+  font-weight: 500;
+}
+
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0 60px 0;
+}
+
+.ctaSection h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.ctaSection p {
+  font-size: 16px;
+  color: #b6c0cc;
+  margin: 0 0 32px 0;
+}
+
+@media (max-width: 900px) {
+  .grid3, .splitSection, .grid2 {
+    grid-template-columns: 1fr;
+  }
+  .heroTitle {
+    font-size: 40px;
+  }
+  .splitSection {
+    gap: 40px;
+  }
+}

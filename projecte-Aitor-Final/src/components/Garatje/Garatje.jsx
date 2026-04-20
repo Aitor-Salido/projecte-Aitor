@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./Garatge.module.css";
+import AfegirVehicle from "./AfegirVehicle";
 
 export default function Garatge() {
   const [cotxes, setCotxes] = useState([]);
@@ -7,6 +8,25 @@ export default function Garatge() {
   const [reparacions, setReparacions] = useState([]);
   const [itvs, setItvs] = useState([]);
   const [controls, setControls] = useState();
+
+
+  const [showAfegirVehicle, setShowAfegirVehicle] = useState(false);
+  const [showRepostar, setShowRepostar] = useState(false);
+  const [showEliminar, setShowEliminar] = useState(false);
+  const cargarCoches = () => {
+    fetch("http://localhost/Projecte_Backend/garatge/mostrarCoches.php", {
+      method: "GET",
+      credentials: "include"
+    })
+      .then(res => res.json())
+      .then(data => setCotxes(data))
+      .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarCoches();
+  }, []);
+
 
   useEffect(() => {
     fetch("http://localhost/Projecte_Backend/garatge/mostrarCoches.php", { method: "GET", credentials: "include" })
@@ -42,7 +62,7 @@ export default function Garatge() {
           <p className={styles.subtituloPagina}>Gestiona els teus vehicles i el seu manteniment</p>
         </div>
         <div>
-          <button className={styles.botonPrincipal}>+ Afegir vehicle</button>
+          <button className={styles.botonPrincipal} onClick={() => setShowAfegirVehicle(true)}>+ Afegir vehicle</button>
         </div>
       </section>
 
@@ -50,16 +70,25 @@ export default function Garatge() {
         {cotxes.map(cotxe => (
           <div key={cotxe.id_vehicle} className={styles.tarjetaCoche}>
             <div className={styles.contenedorImagen}>
-              <img src={cotxe.imatge} alt={cotxe.marca + " " + cotxe.model} className={styles.imagenCoche} />
+              <img
+                src={cotxe.imatge}
+                alt={`${cotxe.marca} ${cotxe.model}`}
+                className={styles.imagenCoche}
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  console.log("Error cargando imagen autenticada");
+                  e.target.src = "https://via.placeholder.com/400x250?text=Error+Autenticacion";
+                }}
+              />
             </div>
             <div className={styles.infoCoche}>
               <h3 className={styles.tituloCoche}>{cotxe.marca} {cotxe.model}</h3>
               <p className={styles.especificacionesCoche}>
-                {cotxe.any_fabricacio} · {cotxe.tipus_combustible} · {cotxe.quilometres_actuals} km
+                {cotxe.any_fabricacio} · {cotxe.tipus_combustible} · {cotxe.quilometres_actuals ? cotxe.quilometres_actuals.toLocaleString('es-ES') : '0'} km
               </p>
               <div className={styles.contenedorEtiquetas}>
                 <span className={styles.etiquetaInfo}>
-                  {cotxe.litres == null ? (
+                  {cotxe.tipus_combustible == "Elèctric" ? (
                     <>
                       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                         width="25px" height="25px" viewBox="0 0 612.000000 612.000000"
@@ -115,6 +144,10 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                     </>
                   )}
                 </span>
+                <div className={styles.contenedorBotones}>
+                  <button className={styles.botonRepostar} onClick={() => setShowRepostar(true)}>Repostar</button>
+                  <button className={styles.botonEliminar} onClick={() => setShowEliminar(true)}>Eliminar vehicle</button>
+                </div>
               </div>
             </div>
           </div>
@@ -306,6 +339,65 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
         </div>
       </section>
 
+
+      {showAfegirVehicle && (
+        <div className={styles.overlayModal} onClick={() => setShowAfegirVehicle(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowAfegirVehicle(false)}
+            >
+              ✖
+            </button>
+            <AfegirVehicle
+              alTerminar={() => {
+                setShowAfegirVehicle(false);
+                cargarCoches();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
+
+      {showRepostar && (
+        <div className={styles.overlayModal} onClick={() => setShowRepostar(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowRepostar(false)}
+            >
+              ✖
+            </button>
+            <Repostar
+              alTerminar={() => {
+                setShowRepostar(false);
+                cargarCoches();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
+      {showEliminar && (
+        <div className={styles.overlayModal} onClick={() => setShowEliminar(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowEliminar(false)}
+            >
+              ✖
+            </button>
+            <EliminarVehicle
+              alTerminar={() => {
+                setShowEliminar(false);
+                cargarCoches();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
     </main>
   );
 }

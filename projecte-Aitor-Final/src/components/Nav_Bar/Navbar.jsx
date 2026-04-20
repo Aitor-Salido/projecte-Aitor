@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styles from "./Navbar.module.css"
 
 export default function Navbar(props) {
   const isLogged = props.logged
+  const navigate = useNavigate()
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.contenidorLogo}>
+      <div className={styles.contenidorLogo} onClick={() => navigate("/")}>
         <img src="./img/logo_Box.png" className={styles.imatgeLogo}></img>
         <p>BoxSphere</p>
       </div>

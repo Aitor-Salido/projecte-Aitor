@@ -1,5 +1,4 @@
 .contenedorPrincipal {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   padding: 40px;
   min-height: calc(100vh - 60px);
   color: #ffffff;
@@ -95,6 +94,7 @@
 
 .contenedorEtiquetas {
   display: flex;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -273,4 +273,104 @@
   font-size: 13px;
   color: #8b8d97;
   margin: 0;
+}
+
+.botonRepostar {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #2ecc71;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botonRepostar:hover {
+  background: #2ecc71;
+  color: #ffffff;
+}
+
+.botonEliminar {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cc2e2e;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botonEliminar:hover {
+  background: #cc2e2e;
+  color: #ffffff;
+}
+
+.contenedorBotones {
+  display: flex;
+  gap: 10px;
+}
+
+.overlayModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; 
+  backdrop-filter: blur(3px); 
+}
+
+.contenidoModal {
+     background: linear-gradient(
+        135deg,
+        #0f172a,  
+        #111827,  
+        #020617   
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px; 
+  max-height: 90vh; 
+  overflow-y: auto; 
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: aparecer 0.3s ease-out;
+}
+
+.botonCerrar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.botonCerrar:hover {
+  color: #ff3b30;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
