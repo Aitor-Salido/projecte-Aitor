@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "./Garatge.module.css";
 import AfegirVehicle from "./AfegirVehicle";
 import EliminarVehicle from "./EliminarVehicle";
+import RepostarVehicle from "./RepostarVehicle";
+import Manteniment from "./Manteniment";
+import Reparacio from "./Reparacio";
+import Itv from "./Itv";
 
 export default function Garatge() {
   const [cotxes, setCotxes] = useState([]);
@@ -16,6 +20,10 @@ export default function Garatge() {
   const [showRepostar, setShowRepostar] = useState(false);
   const [showEliminar, setShowEliminar] = useState(false);
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
+  const [selectedVehicleTipusCombustible, setSelectedVehicleTipusCombustible] = useState(null);
+  const [showManteniment, setShowManteniment] = useState(false);
+  const [showReparacio, setShowReparacio] = useState(false);
+  const [showItv, setShowItv] = useState(false);
 
   const cargarCoches = () => {
     fetch("http://localhost/Projecte_Backend/garatge/mostrarCoches.php", {
@@ -31,35 +39,49 @@ export default function Garatge() {
     cargarCoches();
   }, []);
 
-
-  useEffect(() => {
-    fetch("http://localhost/Projecte_Backend/garatge/mostrarCoches.php", { method: "GET", credentials: "include" })
-      .then(res => res.json()).then(data => setCotxes(data)).catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost/Projecte_Backend/garatge/manteniments.php", { method: "GET", credentials: "include" })
-      .then(res => res.json()).then(data => setManteniments(data)).catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost/Projecte_Backend/garatge/reparacions.php", { method: "GET", credentials: "include" })
-      .then(res => res.json()).then(data => setReparacions(data)).catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost/Projecte_Backend/garatge/itvs.php", { method: "GET", credentials: "include" })
-      .then(res => res.json()).then(data => setItvs(data)).catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost/Projecte_Backend/garatge/controls.php", { method: "GET", credentials: "include" })
-      .then(res => res.json()).then(data => setControls(data)).catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
+  const cargarConsums = () => {
     fetch("http://localhost/Projecte_Backend/garatge/consums.php", { method: "GET", credentials: "include" })
       .then(res => res.json()).then(data => setConsums(data)).catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarConsums();
+  }, []);
+
+  const cargarControles = () => {
+    fetch("http://localhost/Projecte_Backend/garatge/controls.php", { method: "GET", credentials: "include" })
+      .then(res => res.json()).then(data => setControls(data)).catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarControles();
+  }, []);
+
+  const cargarManteniments = () => {
+    fetch("http://localhost/Projecte_Backend/garatge/manteniments.php", { method: "GET", credentials: "include" })
+      .then(res => res.json()).then(data => setManteniments(data)).catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarManteniments();
+  }, []);
+
+  const cargarReparacions = () => {
+    fetch("http://localhost/Projecte_Backend/garatge/reparacions.php", { method: "GET", credentials: "include" })
+      .then(res => res.json()).then(data => setReparacions(data)).catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarReparacions();
+  }, []);
+
+  const cargarItvs = () => {
+    fetch("http://localhost/Projecte_Backend/garatge/itvs.php", { method: "GET", credentials: "include" })
+      .then(res => res.json()).then(data => setItvs(data)).catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    cargarItvs();
   }, []);
 
   return (
@@ -155,7 +177,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
                   )}
                 </span>
                 <div className={styles.contenedorBotones}>
-                  <button className={styles.botonRepostar} onClick={() => { setShowRepostar(true); setSelectedVehicleId(cotxe.id_vehicle); }}>Repostar</button>
+                  <button className={styles.botonRepostar} onClick={() => { setShowRepostar(true); setSelectedVehicleId(cotxe.id_vehicle); setSelectedVehicleTipusCombustible(cotxe.tipus_combustible); }}>Repostar</button>
                   <button className={styles.botonEliminar} onClick={() => { setShowEliminar(true); setSelectedVehicleId(cotxe.id_vehicle); }}>Eliminar vehicle</button>
                 </div>
               </div>
@@ -167,7 +189,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
       <section className={styles.seccion}>
         <div className={styles.cabeceraSeccion}>
           <h2 className={styles.tituloSeccion}>Historial de Manteniment</h2>
-          <button className={styles.botonSecundario}>+ Nou registre</button>
+          <button className={styles.botonSecundario} onClick={() => { setShowManteniment(true); }}>+ Nou registre</button>
         </div>
         <div className={styles.contenedorTabla}>
           <table className={styles.tabla}>
@@ -198,7 +220,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
       <section className={styles.seccion}>
         <div className={styles.cabeceraSeccion}>
           <h2 className={styles.tituloSeccion}>Historial de Reparacions</h2>
-          <button className={styles.botonSecundario}>+ Nova Reparació</button>
+          <button className={styles.botonSecundario} onClick={() => { setShowReparacio(true); }}>+ Nova Reparació</button>
         </div>
         <div className={styles.contenedorTabla}>
           <table className={styles.tabla}>
@@ -231,7 +253,7 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
       <section className={styles.seccion}>
         <div className={styles.cabeceraSeccion}>
           <h2 className={styles.tituloSeccion}>Historial ITVs</h2>
-          <button className={styles.botonSecundario}>+ Nou ITV</button>
+          <button className={styles.botonSecundario} onClick={() => { setShowItv(true); }}>+ Nou ITV</button>
         </div>
         <div className={styles.contenedorTabla}>
           <table className={styles.tabla}>
@@ -405,6 +427,11 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
               alTerminar={() => {
                 setShowAfegirVehicle(false);
                 cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
               }}
             />
 
@@ -421,10 +448,15 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
             >
               ✖
             </button>
-            <Repostar id_vehicle={selectedVehicleId}
+            <RepostarVehicle id_vehicle={selectedVehicleId} tipus_combustible={selectedVehicleTipusCombustible}
               alTerminar={() => {
                 setShowRepostar(false);
                 cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
               }}
             />
 
@@ -444,6 +476,86 @@ c-84 2 -109 0 -113 -11z m206 -67 l0 -60 -95 0 -95 0 0 60 0 60 95 0 95 0 0
               alTerminar={() => {
                 setShowEliminar(false);
                 cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
+
+      {showManteniment && (
+        <div className={styles.overlayModal} onClick={() => setShowManteniment(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowManteniment(false)}
+            >
+              ✖
+            </button>
+            <Manteniment
+              alTerminar={() => {
+                setShowManteniment(false);
+                cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
+
+      {showReparacio && (
+        <div className={styles.overlayModal} onClick={() => setShowReparacio(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowReparacio(false)}
+            >
+              ✖
+            </button>
+            <Reparacio
+              alTerminar={() => {
+                setShowReparacio(false);
+                cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
+              }}
+            />
+
+          </div>
+        </div>
+      )}
+
+      {showItv && (
+        <div className={styles.overlayModal} onClick={() => setShowItv(false)}>
+          <div className={styles.contenidoModal} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.botonCerrar}
+              onClick={() => setShowItv(false)}
+            >
+              ✖
+            </button>
+            <Itv
+              alTerminar={() => {
+                setShowItv(false);
+                cargarCoches();
+                cargarConsums();
+                cargarControles();
+                cargarManteniments();
+                cargarReparacions();
+                cargarItvs();
               }}
             />
 

@@ -31,7 +31,7 @@ export default function EliminarVehicle({ alTerminar, id_vehicle }) {
                     }, 2000);
                 }
             } else {
-                setErrorBack("Error al eliminar el coche");
+                setErrorBack("Error al eliminar el vehicle");
             }
         } catch (err) {
             console.error(err);

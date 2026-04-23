@@ -68,11 +68,11 @@ export default function AfegirVehicle({ alTerminar }) {
                     }, 2000);
                 }
             } else {
-                setErrorBack("Error al añadir el coche");
+                setErrorBack(data.error);
             }
         } catch (err) {
             console.error(err);
-            setErrorBack("Error del servidor");
+            setErrorBack(data.error);
         }
     };
 

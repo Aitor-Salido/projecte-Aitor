@@ -22,15 +22,9 @@ if ($conn->connect_error) {
 $idUsuari = $_SESSION['idUsuario'];
 
 
-// CONSUMO MEDIO ESTE MES
+// consum aquest mes
 $stmt = $conn->prepare("
-SELECT ROUND(AVG(c.consum_mitja_obc),2)
-FROM consum c
-JOIN vehicle v ON c.id_vehicle = v.id_vehicle
-WHERE v.id_usuari = ?
-AND MONTH(c.data) = MONTH(CURDATE())
-AND YEAR(c.data) = YEAR(CURDATE());
-");
+SELECT ROUND(AVG( CASE WHEN c.litres IS NOT NULL THEN c.consum_mitja_obc WHEN c.kwh IS NOT NULL THEN c.consum_mitja_obc / 8.9 END ), 2) AS consum_mig_litres FROM consum c JOIN vehicle v ON c.id_vehicle = v.id_vehicle WHERE v.id_usuari = ? AND MONTH(c.data) = MONTH(CURDATE()) AND YEAR(c.data) = YEAR(CURDATE());");
 $stmt->bind_param("i", $idUsuari);
 $stmt->execute();
 $stmt->bind_result($consum_mes);
@@ -38,15 +32,9 @@ $stmt->fetch();
 $stmt->close();
 
 
-// CONSUMO MEDIO MES PASADO
+// consum mes pasat
 $stmt = $conn->prepare("
-SELECT ROUND(AVG(c.consum_mitja_obc),2)
-FROM consum c
-JOIN vehicle v ON c.id_vehicle = v.id_vehicle
-WHERE v.id_usuari = ?
-AND MONTH(c.data) = MONTH(CURDATE() - INTERVAL 1 MONTH)
-AND YEAR(c.data) = YEAR(CURDATE() - INTERVAL 1 MONTH)
-");
+SELECT ROUND(AVG( CASE WHEN c.litres IS NOT NULL THEN c.consum_mitja_obc WHEN c.kwh IS NOT NULL THEN c.consum_mitja_obc / 8.9 END ), 2) AS consum_mig_litres FROM consum c JOIN vehicle v ON c.id_vehicle = v.id_vehicle WHERE v.id_usuari = ? AND MONTH(c.data) = MONTH(CURDATE()- INTERVAL 1 MONTH) AND YEAR(c.data) = YEAR(CURDATE()- INTERVAL 1 MONTH);");
 $stmt->bind_param("i", $idUsuari);
 $stmt->execute();
 $stmt->bind_result($consum_mes_passat);
@@ -54,7 +42,7 @@ $stmt->fetch();
 $stmt->close();
 
 
-// GASTO ESTE MES
+// gast aquest mes
 $stmt = $conn->prepare("
 SELECT ROUND(SUM(c.cost_total),2)
 FROM consum c
@@ -70,7 +58,7 @@ $stmt->fetch();
 $stmt->close();
 
 
-// GASTO MES PASADO
+// gast mes pasat
 $stmt = $conn->prepare("
 SELECT ROUND(SUM(c.cost_total),2)
 FROM consum c
@@ -86,7 +74,7 @@ $stmt->fetch();
 $stmt->close();
 
 
-// KM ESTE MES
+// km aquest mes
 $stmt = $conn->prepare("
 SELECT ROUND(SUM((c.litres*100)/c.consum_mitja_obc),0)
 FROM consum c
@@ -102,7 +90,7 @@ $stmt->fetch();
 $stmt->close();
 
 
-// KM MES PASADO
+// km mes pasat
 $stmt = $conn->prepare("
 SELECT ROUND(SUM((c.litres*100)/c.consum_mitja_obc),0)
 FROM consum c
@@ -118,7 +106,7 @@ $stmt->fetch();
 $stmt->close();
 
 
-// ULTIMO REPOSTAJE
+// ultim comsum
 $stmt = $conn->prepare("
 SELECT MAX(c.data)
 FROM consum c
@@ -132,14 +120,14 @@ $stmt->fetch();
 $stmt->close();
 
 
-// JSON FINAL
+// json
 echo json_encode([
-    "consum_mes" => (int) ($consum_mes ?? 0),
-    "consum_mes_passat" => (int) ($consum_mes_passat ?? 0),
-    "gasto_mes" => (int) ($gasto_mes ?? 0),
-    "gasto_mes_passat" => (int) ($gasto_mes_passat ?? 0),
-    "km_mes" => (int) ($km_mes ?? 0),
-    "km_mes_passat" => (int) ($km_mes_passat ?? 0),
-    "ultim_repostatge" => (int) ($ultim_repostatge ?? 0)
+    "consum_mes" => (float) ($consum_mes ?? 0),
+    "consum_mes_passat" => (float) ($consum_mes_passat ?? 0),
+    "gasto_mes" => (float) ($gasto_mes ?? 0),
+    "gasto_mes_passat" => (float) ($gasto_mes_passat ?? 0),
+    "km_mes" => (float) ($km_mes ?? 0),
+    "km_mes_passat" => (float) ($km_mes_passat ?? 0),
+    "ultim_repostatge" => (string) ($ultim_repostatge ?? 0)
 ]);
 ?>

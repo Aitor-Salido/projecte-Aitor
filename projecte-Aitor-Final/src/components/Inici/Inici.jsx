@@ -12,7 +12,7 @@ export default function Inici() {
           <span>El teu garatge virtual</span>
         </div>
         <h1 className={styles.tituloPrincipal}>Controla el teu vehicle.<br />Estalvia temps i diners.</h1>
-        <p className={styles.textoSecundario}>BoxSphere centralitza el manteniment, els gastos i el consum dels teus vehicles en una sola plataforma. Oblida't dels papers i les fulles de càlcul.</p>
+        <p className={styles.textoSecundario}>BoxSphere centralitza el manteniment, els despeses i el consum dels teus vehicles en una sola plataforma. Oblida't dels papers i les fulles de càlcul.</p>
         <div className={styles.grupoBotones}>
           <Button className={styles.botonPrincipal} onClick={() => navigate("/registrat")}>Comença ara</Button>
           <Button className={styles.botonSecundario} onClick={() => navigate("/registrat")}>Saber més</Button>
@@ -32,7 +32,7 @@ export default function Inici() {
         <header className={styles.cabeceraSeccion}>
           <span className={styles.etiquetaSeccion}>FUNCIONALITATS</span>
           <h2>Tot el que necessites per al teu vehicle</h2>
-          <p>Gestiona el manteniment, els gastos i el consum en un sol lloc</p>
+          <p>Gestiona el manteniment, les despeses i el consum en un sol lloc</p>
         </header>
         <div className={styles.cuadriculaTresColumnas}>
           <div className={styles.tarjetaInformacion}>
@@ -42,7 +42,7 @@ export default function Inici() {
           </div>
           <div className={styles.tarjetaInformacion}>
             <div className={styles.contenedorIcono}><img src="./img/icon2.svg" alt="" /></div>
-            <h3>Manteniment i Gastos</h3>
+            <h3>Manteniment i Despeses</h3>
             <p>Registra canvis d'oli, pneumàtics, revisions, ITV i qualsevol intervenció amb els seus costos i dates de forma organitzada.</p>
           </div>
           <div className={styles.tarjetaInformacion}>
@@ -72,7 +72,7 @@ export default function Inici() {
           <div className={styles.tarjetaPaso}>
             <div className={styles.numeroPaso}>3</div>
             <h3>Controla tot</h3>
-            <p>Gestiona manteniment, gastos de combustible, compara vehicles i participa al rànquing.</p>
+            <p>Gestiona manteniment, despeses de combustible, compara vehicles i participa al rànquing.</p>
           </div>
         </div>
       </section>
